@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PinjamanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', [PinjamanController::class, 'index'])->name('hal_utama');
+
+Route::post('/pinjaman/create', [PinjamanController::class, 'create']);
+
+Route::get('/pinjaman/{id}', [PinjamanController::class, 'edit'])->name('hal_update');
+
+Route::put('/pinjaman/{id}', [PinjamanController::class, 'update']);
+
+Route::delete('/pinjaman/{id}', [PinjamanController::class, 'destroy'])->name('destroy');
